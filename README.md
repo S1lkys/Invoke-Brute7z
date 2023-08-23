@@ -12,6 +12,6 @@ Parameters
 . .\PowerShell-Zipcracker v2.ps1
 Invoke-Brute7z -SevenZipPath "C:\Program Files\7-Zip\7z.exe" -zipFile "C:\Users\mbzra\Dropbox\PC\Desktop\CrackMe.7z" -updateInterval 1 -minLen 2 -maxLen 2
 ```
-![](https://github.com/S1lkys/Invoke-Brute7z/blob/7b49e3d003e5d1ad96f4dd0aeaeab13b805cca38/image_2023-08-23_22-46-31.jpg)
+![](https://github.com/S1lkys/Invoke-Brute7z/blob/e16757cf99ba3063f7da3f3243adf11272dfc8c3/Screenshot%202023-08-23%20233250.png)
 
 There will be an error on fist startup. Simply ignore it.
