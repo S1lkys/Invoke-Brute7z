@@ -1,5 +1,4 @@
-﻿function Show-AsciiBanner {
-    cls
+function Show-AsciiBanner {
     Write-Host @"
        _______________________
       | How does a duck crack  |
@@ -18,18 +17,18 @@
 
 function Invoke-Brute7z {
     param(
-        [string]$7zipPath = "C:\Program Files\7-Zip\7z.exe",
-        [string]$zipFile = "C:\Users\mbzra\Dropbox\PC\Desktop\CrackMe.7z",
+        [string]$SevenZipPath = "C:\Program Files\7-Zip\7z.exe",
+        [string]$zipFile = "",
         [int]$minLen = 3,
         [int]$maxLen = 3,
-        [int]$updateInterval
+        [int]$updateInterval = 1
     )
 
-
+Show-AsciiBanner
 # Vars für das Script
 $script:attempts =0
 $intervalAttempts = 0  # Versuche im aktuellen Intervall
-$lastUpdateTime = Get-Date
+$script:lastUpdate = Get-Date
 $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 $intervalStart = Get-Date
@@ -68,13 +67,16 @@ function Test-ZipPassword {
     $currentTime = Get-Date
 
     # Überprüfen, ob das Aktualisierungsintervall erreicht ist
-   $elapsedTime = ($currentTime - $script:lastUpdate).TotalSeconds
+$elapsedTime = ($currentTime - $script:lastUpdate).TotalSeconds
+    if ($script:attempts -eq 1) {
+        $elapsedTime =0
+    }
 if ($elapsedTime -ge $updateInterval) {
         $progressPercentage = Get-Progress -password $password.ToCharArray()
         $progressBarLength = 30
         $filledLength = [Math]::Round($progressPercentage * $progressBarLength)
         $progressBar = ('#' * $filledLength).PadRight($progressBarLength, ' ')
-
+        cls
         Show-AsciiBanner
         Write-Host ("Attempt # $($script:attempts)/${maxCombinations}: '$password' [$progressBar] {0:P2}" -f $progressPercentage)
 
@@ -90,7 +92,7 @@ if ($elapsedTime -ge $updateInterval) {
     
     }
 
-    $output = & $7zipPath e -p"$password" $zipFile -oC:\temp\testunzip -y 2>&1
+    $output = & $SevenZipPath e -p"$password" $zipFile -oC:\temp\testunzip -y 2>&1
     Remove-Item -Path "C:\temp\testunzip\*" -Recurse -Force 2>$null
 
     # Überprüfen Sie, ob die Ausgabe "Everything is Ok" enthält
