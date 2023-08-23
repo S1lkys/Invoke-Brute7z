@@ -10,7 +10,7 @@ Parameters
 
 ```
 . .\PowerShell-Zipcracker v2.ps1
-Invoke-Brute7z -SevenZipPath "C:\Program Files\7-Zip\7z.exe" -zipFile "C:\Users\user\Dropbox\PC\Desktop\CrackMe.7z" -updateInterval 1 -minLen 2 -maxLen 2
+Invoke-Brute7z -SevenZipPath "C:\Program Files\7-Zip\7z.exe" -zipFile "C:\Users\user\CrackMe.7z" -updateInterval 1 -minLen 2 -maxLen 2
 ```
 ![](https://github.com/S1lkys/Invoke-Brute7z/blob/e16757cf99ba3063f7da3f3243adf11272dfc8c3/Screenshot%202023-08-23%20233250.png)
 
